@@ -1,5 +1,5 @@
 
-const TIME_STYLES = {
+let TIME_STYLES = {
     fontSize: 20,
     color: '#DC143C'
 }

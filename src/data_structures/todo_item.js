@@ -2,17 +2,23 @@ import React from "react";
 import { Card, ListGroupItem } from "react-bootstrap";
 
 function TodoItem(props) {
+
+  const completedStyle={
+    fontStyle: "italic",
+    color:"#cdcdcd",
+    textDecoration: "line-through"
+  }
+
   return (
     <Card style={{ width: "18rem", margin: "2%" }}>
       <Card.Body>
-        <Card.Title>TO DO:</Card.Title>
         <ListGroupItem>
           <input
             type="checkbox"
             checked={props.completed}
-            handleChange={() => props.isCompleted(props.id)}
+            onChange={() => props.handleChange(props.id)}
           />
-          {props.task}
+          <p style={props.completed ? completedStyle: null}>{props.task}</p>
         </ListGroupItem>
       </Card.Body>
     </Card>

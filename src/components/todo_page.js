@@ -19,16 +19,16 @@ class Todo extends React.Component {
     });
   }
 
-  isCompleted(id) {
-    alert(`Checked`);
-    // this.setState((prevState)=>{
-    //     if(prevState.completed === true){
-    //         this.setState({completed: false});
-    //     }
-    //     else{
-    //         this.setState({completed: true});
-    //     }
-    // })
+  handleChange(id) {
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.map(todo => {
+        if( todo.id === id){
+          todo.completed = !todo.completed
+        }
+        return todo
+      })
+      return 
+    })
   }
 
   render() {
