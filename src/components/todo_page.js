@@ -8,7 +8,7 @@ class Todo extends React.Component {
     super();
     this.state = { count: 0, completed: false, todos: TodoData };
     this.handleClick = this.handleClick.bind(this);
-    this.isCompleted = this.isCompleted.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick() {
@@ -19,25 +19,28 @@ class Todo extends React.Component {
     });
   }
 
-  isCompleted(id) {
-    alert(`Checked`);
-    // this.setState((prevState)=>{
-    //     if(prevState.completed === true){
-    //         this.setState({completed: false});
-    //     }
-    //     else{
-    //         this.setState({completed: true});
-    //     }
-    // })
+  handleChange(id) {
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.map(todo => {
+        if( todo.id === id){
+          todo.completed = !todo.completed
+        }
+        return todo
+      })
+      return {
+        todos: updatedTodos
+      }
+    })
   }
 
   render() {
     const todoData = this.state.todos.map((item) => (
       <TodoStructure
         key={item.id}
+        id={item.id}
         task={item.task}
         completed={item.completed}
-        handleChange={this.isCompleted}
+        handleChange={this.handleChange}
       />
     ));
 
