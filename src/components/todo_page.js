@@ -8,7 +8,7 @@ class Todo extends React.Component {
     super();
     this.state = { count: 0, completed: false, todos: TodoData };
     this.handleClick = this.handleClick.bind(this);
-    this.isCompleted = this.isCompleted.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick() {
@@ -27,7 +27,9 @@ class Todo extends React.Component {
         }
         return todo
       })
-      return 
+      return {
+        todos: updatedTodos
+      }
     })
   }
 
@@ -35,9 +37,10 @@ class Todo extends React.Component {
     const todoData = this.state.todos.map((item) => (
       <TodoStructure
         key={item.id}
+        id={item.id}
         task={item.task}
         completed={item.completed}
-        handleChange={this.isCompleted}
+        handleChange={this.handleChange}
       />
     ));
 
